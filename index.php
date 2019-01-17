@@ -1,10 +1,12 @@
 <?php
-include_once 'includes/startup.php';
+$site_path = __DIR__.DIRECTORY_SEPARATOR;
+define('SITE_PATH', $site_path);
+$site_host=$_SERVER['HTTP_HOST'];
+define('SITE_HOST', $site_host);
 
-include_once SITE_PATH.'config/mysql.php';
-$DB = new PDO('mysql:host='.$db_host.';dbname='.$db_base, $db_user, $db_pass);
-$registry['DB']=$DB;
-$registry['pdb']=$pdb;
+include_once SITE_PATH.'includes'.DIRECTORY_SEPARATOR.'startup.php';
+
+$registry = new Registry;
 
 $template = new Template($registry);
 $registry['template']=$template;

@@ -2,6 +2,12 @@
 error_reporting (E_ALL);
 if (version_compare(phpversion(), '5.1.0', '<') == true) { die ('PHP5.1 Only'); }
 
+include_once SITE_PATH.'config'.DIRECTORY_SEPARATOR.'mysql.php';
+
+$DB = new PDO('mysql:host='.$db_host.';dbname='.$db_base, $db_user, $db_pass);
+$registry['DB']=$DB;
+$registry['pdb']=$pdb;
+
 function __autoload($class_name)
 {
 	$filename = strtolower($class_name).'.php';
@@ -12,11 +18,4 @@ function __autoload($class_name)
 	}
 	include_once $file;
 }
-
-$site_path = dirname(dirname(__FILE__)).'/';
-define('SITE_PATH', $site_path);
-$site_host=$_SERVER['HTTP_HOST'];//Хост
-define('SITE_HOST', $site_host);
-
-$registry = new Registry;
 ?>

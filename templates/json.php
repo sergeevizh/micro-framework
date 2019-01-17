@@ -1,8 +1,8 @@
 {
 	"status": "<?php echo $status; ?>",
 	"result": [
-	<?
-		if(is_array($json)){
+	<?php
+		if(isset($json) && is_array($json)){
 			$c=0;
 			foreach($json as $json_line){
 				$c++;
